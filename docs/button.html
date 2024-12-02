@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>button</title>
+  <style>
+  .container {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    min-height:100vh;
+  }
+  .button {
+    user-select:none;
+    background-color:#008CBA;
+    color:#FFFFFF;
+    width:fit-content;
+    height:fit-content;
+    padding:10px;
+    border-radius:4px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  </style>
+</head>
+<body onload="activate()">
+  <h1>
+    <div class="container">
+      <div class="button">Press Me</div>
+    </div>
+  </h1>
+  
+  <script>
+  
+  function resize(div, expand) {
+    const currentWidth = parseInt(window.getComputedStyle(div).width);
+    const currentHeight = parseInt(window.getComputedStyle(div).height);
+      
+    if (expand) {
+      div.style.width = (currentWidth + 10) + 'px';
+      div.style.height = (currentHeight + 10) + 'px';
+    } else {
+      div.style.width = 'fit-content';
+      div.style.height = 'fit-content';
+    }
+  }
+  
+  function activate() {
+    const div = document.querySelector('.button');
+
+    div.addEventListener('mousedown', function() { resize(div,true); });
+    div.addEventListener('touchstart', function() { resize(div,true); });
+
+    div.addEventListener('mouseup', function() { resize(div,false); });
+    div.addEventListener('touchend', function() { resize(div,false); });
+  }
+  </script>
+</body>
+</html>
