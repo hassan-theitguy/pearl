@@ -2,9 +2,14 @@
 
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
   <title>button</title>
   <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
   .container {
     display:flex;
     justify-content:center;
@@ -16,6 +21,7 @@
     user-select:none;
     background-color:#008CBA;
     color:#FFFFFF;
+    font-size:15vw;
     width:fit-content;
     height:fit-content;
     padding:10px;
@@ -41,8 +47,8 @@
     const currentHeight = parseInt(window.getComputedStyle(div).height);
       
     if (expand) {
-      div.style.width = (currentWidth + 10) + 'px';
-      div.style.height = (currentHeight + 10) + 'px';
+      div.style.width = (currentWidth + 30) + 'px';
+      div.style.height = (currentHeight + 30) + 'px';
     } else {
       div.style.width = 'fit-content';
       div.style.height = 'fit-content';
