@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>ball</title>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  #container {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    min-height:100vh;
+  }
+  #circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #424242;
+      position: absolute;
+      top: 50px;
+      left: 50px;
+   }
+  </style>
+</head>
+<body onload="activate()">
+  <div id="container">
+    click anywhere on screen to move the ball there
+    <div id="circle"></div>
+  </div>
+  
+  <script>
+  function moveCircle(circle,x,y) {
+     circle.animate([
+        { top: circle.offsetTop + 'px', left: circle.offsetLeft + 'px' },
+        { top: y + 'px', left: x + 'px' }
+      ], {
+        duration: 1000,
+        fill: 'forwards'
+      });
+    }
+  function activate() {
+    document.body.addEventListener('click', function(event) {
+      const circle = document.getElementById("circle");
+      
+      const mouseX = event.clientX;
+      const mouseY = event.clientY;
+
+      moveCircle(circle, mouseX - 25, mouseY - 25);
+    });
+  }
+  </script>
+</body>
+</html>
