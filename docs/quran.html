@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>quran</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #header {
+      position:absolute;
+      top:0px;
+    }
+    #footer {
+      position:absolute;
+      top:270px;
+    }
+    .quran {
+      background-color:#424242;
+      position:absolute;
+      transition: background-color 1s ease-in-out;
+    }
+    #q1 {
+      top:100px;
+      left:60px;
+      width:20px;
+      height:100px;
+    }
+    #q2 {
+      top:100px;
+      left:20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    #u1 {
+      top:100px;
+      left:90px;
+      width:50px;
+      height:50px;
+      border-bottom-left-radius:50%;
+      border-bottom-right-radius:50%;
+    }
+    #r1 {
+      top:100px;
+      left:150px;
+      width:20px;
+      height:50px;
+    }
+    #r2 {
+      top:100px;
+      left:170px;
+      width:30px;
+      height:20px;
+      border-top-right-radius:50%;
+      border-top-left-radius:50%;
+    }
+    #a1 {
+      top:100px;
+      left:250px;
+      width:20px;
+      height:50px;
+    }
+    #a2 {
+      top:100px;
+      left:210px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    #n1 {
+      top:100px;
+      left:280px;
+      width:50px;
+      height:50px;
+      border-top-left-radius:50%;
+      border-top-right-radius:50%;
+    }
+  </style>
+</head>
+<body onload="activate()">
+  <div id="header">
+    touch the quran
+  </div>
+  <div id="q1" class="quran"></div>
+  <div id="q2" class="quran"></div>
+  <div id="u1" class="quran"></div>
+  <div id="r1" class="quran"></div>
+  <div id="r2" class="quran"></div>
+  <div id="a1" class="quran"></div>
+  <div id="a2" class="quran"></div>
+  <div id="n1" class="quran"></div>
+  </div>
+  <div id="footer">
+    "Everything the Quran touches
+    turns to gold so do not be
+    afraid to let it touch your
+    soul." -- Ibrahim Jaaber
+  </div>
+
+<script>
+    function activate() {
+      const quranDivs = document.querySelectorAll('.quran');
+
+      quranDivs.forEach(div => {
+        div.addEventListener('touchstart', function() {
+          const quranDivs = document.querySelectorAll('.quran');
+
+          quranDivs.forEach(div => {
+            div.style.backgroundColor = 'gold';
+          });
+        });
+      });
+    }
+  </script>
+</body>
+</html>
