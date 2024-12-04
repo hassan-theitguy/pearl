@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Numbers</title>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  #numbers {
+    background-color:#424242;
+    color:white;
+    height:500px;
+  }
+  </style>
+</head>
+<body onload="fill()">
+  <input type="hidden" id="total" name="total" value="0">
+  <input type="hidden" id="tries" name="tries" value="0">
+  <div>
+    You have to guess the total of
+    all the numbers in the least
+    amount of tries and time. 42
+    numbers in the range from 1 to
+    23.
+    <br/>
+    <button type="button" id="btnGuess" onclick="guess()">Guess Total</button>
+    <button type="button" id="btnShow" onclick="show()">Show Total</button>
+    <button type="button" id="btnStart" onclick="start()">Start Again</button>
+    <br/>
+    <span id="guesses">Tries = 0</span>
+    Time = <span id="timer">0</span> s
+  </div>
+  
+  <div id="numbers">
+  </div>
+  <script>
+    var timer;
+    function setTime() {
+      time = parseInt(document.getElementById("timer").innerHTML);
+      time+=1;
+      
+      document.getElementById("timer").innerHTML = time;
+    }
+    function start() {
+      location. reload();
+    }
+    function show() {
+      alert("Total = " + document.getElementById("total").value);
+    }
+    function guess() {
+      value = parseInt(prompt("What is the total?"));
+      total = parseInt(document.getElementById("total").value);
+      tries = parseInt(document.getElementById("tries").value);
+      
+      tries+= 1;
+      document.getElementById("tries").value = tries;
+      document.getElementById("guesses").innerHTML = "Tries = " + tries;
+      
+      if (total == value) {
+        alert("CONGRATS - you guessed correct");
+        clearInterval(timer);
+      }
+      if (total > value) {
+        alert("Total is greater!");
+      }
+      if (total < value) {
+        alert("Total is less!");
+      }
+    }
+    function fill() {
+      const div = document.getElementById('numbers');
+      div.innerHTML = '';
+      total=0;
+
+      for (let i = 0; i <= 42; i++) {
+        const randomNumber = Math.floor(Math.random() * 23) + 1;
+        const randomFontSize = Math.floor(Math.random() * 30) + 5;
+
+        total += randomNumber;
+        
+        const numberElement = document.createElement('span');
+        numberElement.textContent = randomNumber;
+        numberElement.style.fontSize = randomFontSize + 'px';
+        numberElement.style.position = 'absolute';
+        numberElement.style.top = Math.floor((Math.random() * 400)+100) + 'px';
+        numberElement.style.left = Math.floor(Math.random() * 90) + '%';
+
+        div.appendChild(numberElement);
+      }
+        
+      document.getElementById("total").value = total;
+        
+      timer = setInterval(setTime, 1000);
+    }
+  </script>
+</body>
+</html>
