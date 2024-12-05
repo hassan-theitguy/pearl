@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <title>Numbers</title>
+  <title>Guess the total</title>
   <style>
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  #numbers {
-    background-color:#424242;
-    color:white;
-    height:500px;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  
+    #numbers {
+      background-color:#424242;
+      color:white;
+      height:500px;
+    }
   </style>
 </head>
 <body onload="fill()">
@@ -39,18 +39,22 @@
   </div>
   <script>
     var timer;
+  
     function setTime() {
       time = parseInt(document.getElementById("timer").innerHTML);
       time+=1;
       
       document.getElementById("timer").innerHTML = time;
     }
+  
     function start() {
       location. reload();
     }
+  
     function show() {
       alert("Total = " + document.getElementById("total").value);
     }
+  
     function guess() {
       value = parseInt(prompt("What is the total?"));
       total = parseInt(document.getElementById("total").value);
@@ -71,11 +75,12 @@
         alert("Total is less!");
       }
     }
+  
     function fill() {
       const div = document.getElementById('numbers');
       div.innerHTML = '';
       total=0;
-
+      
       for (let i = 0; i <= 42; i++) {
         const randomNumber = Math.floor(Math.random() * 23) + 1;
         const randomFontSize = Math.floor(Math.random() * 30) + 5;
@@ -83,17 +88,18 @@
         total += randomNumber;
         
         const numberElement = document.createElement('span');
+        
         numberElement.textContent = randomNumber;
         numberElement.style.fontSize = randomFontSize + 'px';
         numberElement.style.position = 'absolute';
         numberElement.style.top = Math.floor((Math.random() * 400)+100) + 'px';
         numberElement.style.left = Math.floor(Math.random() * 90) + '%';
-
+        
         div.appendChild(numberElement);
       }
-        
+      
       document.getElementById("total").value = total;
-        
+      
       timer = setInterval(setTime, 1000);
     }
   </script>

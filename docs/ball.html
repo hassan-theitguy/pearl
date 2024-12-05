@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <title>ball</title>
+  <title>Circle goes where pressed</title>
   <style>
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  #container {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    min-height:100vh;
-  }
-  #circle {
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  
+    body, html {
+      height: 100%;
+      overflow: hidden;
+    }
+  
+    #container {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      min-height:100vh;
+    }
+  
+    #circle {
       width: 50px;
       height: 50px;
       border-radius: 50%;
@@ -25,7 +31,7 @@
       position: absolute;
       top: 50px;
       left: 50px;
-   }
+    }
   </style>
 </head>
 <body onload="activate()">
@@ -35,8 +41,8 @@
   </div>
   
   <script>
-  function moveCircle(circle,x,y) {
-     circle.animate([
+    function moveCircle(circle,x,y) {
+      circle.animate([
         { top: circle.offsetTop + 'px', left: circle.offsetLeft + 'px' },
         { top: y + 'px', left: x + 'px' }
       ], {
@@ -44,16 +50,17 @@
         fill: 'forwards'
       });
     }
-  function activate() {
-    document.body.addEventListener('click', function(event) {
-      const circle = document.getElementById("circle");
-      
-      const mouseX = event.clientX;
-      const mouseY = event.clientY;
-
-      moveCircle(circle, mouseX - 25, mouseY - 25);
-    });
-  }
+  
+    function activate() {
+      document.body.addEventListener('click', function(event) {
+        const circle = document.getElementById("circle");
+        
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+  
+        moveCircle(circle, mouseX - 25, mouseY - 25);
+      });
+    }
   </script>
 </body>
 </html>

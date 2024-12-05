@@ -1,36 +1,42 @@
 <!DOCTYPE html>
-
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <title>button</title>
+  <title>Expand button when pressed</title>
   <style>
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  .container {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    min-height:100vh;
-  }
-  .button {
-    user-select:none;
-    background-color:#424242;
-    color:#FFFFFF;
-    font-size:15vw;
-    width:fit-content;
-    height:fit-content;
-    padding:10px;
-    border-radius:4px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  
+    body, html {
+      height: 100%;
+      overflow: hidden;
+    }
+  
+    .container {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      min-height:100vh;
+    }
+  
+    .button {
+      user-select:none;
+      background-color:#424242;
+      color:#FFFFFF;
+      font-size:15vw;
+      width:fit-content;
+      height:fit-content;
+      padding:10px;
+      border-radius:4px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
   </style>
 </head>
 <body onload="activate()">
@@ -41,29 +47,28 @@
   </h1>
   
   <script>
-  
-  function resize(div, expand) {
-    const currentWidth = parseInt(window.getComputedStyle(div).width);
-    const currentHeight = parseInt(window.getComputedStyle(div).height);
-      
-    if (expand) {
-      div.style.width = (currentWidth + 30) + 'px';
-      div.style.height = (currentHeight + 30) + 'px';
-    } else {
-      div.style.width = 'fit-content';
-      div.style.height = 'fit-content';
+    function resize(div, expand) {
+      const currentWidth = parseInt(window.getComputedStyle(div).width);
+      const currentHeight = parseInt(window.getComputedStyle(div).height);
+        
+      if (expand) {
+        div.style.width = (currentWidth + 30) + 'px';
+        div.style.height = (currentHeight + 30) + 'px';
+      } else {
+        div.style.width = 'fit-content';
+        div.style.height = 'fit-content';
+      }
     }
-  }
+    
+    function activate() {
+      const div = document.querySelector('.button');
   
-  function activate() {
-    const div = document.querySelector('.button');
-
-    div.addEventListener('mousedown', function() { resize(div,true); });
-    div.addEventListener('touchstart', function() { resize(div,true); });
-
-    div.addEventListener('mouseup', function() { resize(div,false); });
-    div.addEventListener('touchend', function() { resize(div,false); });
-  }
+      div.addEventListener('mousedown', function() { resize(div,true); });
+      div.addEventListener('touchstart', function() { resize(div,true); });
+  
+      div.addEventListener('mouseup', function() { resize(div,false); });
+      div.addEventListener('touchend', function() { resize(div,false); });
+    }
   </script>
 </body>
 </html>
