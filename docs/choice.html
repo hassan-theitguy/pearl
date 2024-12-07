@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a choice</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+
+        #top {
+            flex: 1;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-size: 42px;
+            font-weight: bold;
+        }
+
+        #bottom {
+            flex: 1;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 42px;
+            font-weight: bold;
+        }
+
+        #centerLine {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #424242;
+            font-size: 42px;
+            font-weight: bold;
+            transform: translateY(-50%); /* Ensures it's perfectly centered */
+        }
+    </style>
+</head>
+<body>
+    <div id="top">Empty</div>
+    <div id="bottom">Full</div>
+    <div id="centerLine">Make a choice</div>
+
+    <script>
+        document.body.addEventListener("click", function() {
+            window.location.href = "https://trinbagotechie.blogspot.com/2024/12/fifty-percent.html";
+        });
+    </script>
+</body>
+</html>
