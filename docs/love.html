@@ -22,11 +22,24 @@
     }
     .love {
       position: absolute;
-      font-size: 10px;
+      font-size: 10px; /* Increased font size for better visibility */
       font-weight: bold;
       color: #2c3e50;
       white-space: nowrap;
+      pointer-events: none; /* Prevents interfering with other elements */
+      animation: drop 3s ease-out forwards; /* Apply drop animation */
     }
+    
+    /* Keyframes for the "dropping" animation */
+    @keyframes drop {
+      0% {
+        top: -100px; /* Start above the screen */
+      }
+      100% {
+        top: var(--targetY); /* Target position */
+      }
+    }
+
     #container {
       flex: 1;
       display: flex;
@@ -39,7 +52,6 @@
   <div id="container"></div>
   <script>
     function activate() {
-      // Store the coordinates for each letter (G, O, D) as arrays of {x, y}
       const coordinates = {
         G: [
           { x: 50, y: 100 },
@@ -62,11 +74,11 @@
           { x: 100, y: 160 },
           { x: 100, y: 175 },
           { x: 130, y: 190 },
-          { x: 160, y: 115 },
-          { x: 160, y: 130 },
-          { x: 160, y: 145 },
+          { x: 160, y: 175 },
           { x: 160, y: 160 },
-          { x: 160, y: 175 }
+          { x: 160, y: 145 },
+          { x: 160, y: 130 },
+          { x: 160, y: 115 }
         ],
         D: [
           { x: 240, y: 100 },
@@ -76,36 +88,45 @@
           { x: 210, y: 145 },
           { x: 210, y: 160 },
           { x: 210, y: 175 },
-          { x: 240, y: 190 },
           { x: 210, y: 190 },
-          { x: 270, y: 115 },
-          { x: 270, y: 130 },
-          { x: 270, y: 145 },
+          { x: 240, y: 190 },
+          { x: 270, y: 175 },
           { x: 270, y: 160 },
-          { x: 270, y: 175 }
+          { x: 270, y: 145 },
+          { x: 270, y: 130 },
+          { x: 270, y: 115 }
         ]
       };
-  
-      // The word to fill the coordinates
+
       const word = "LOVE";
-    
-      screen = document.getElementById('container');
+      const screen = document.getElementById('container');
+      const middleX = (screen.offsetWidth / 2) - 150;
+      const middleY = (screen.offsetHeight / 2) - 150;
       
-      console.log(screen.offsetHeight);
-    
-      const middleX = (screen.offsetWidth / 2)-150;
-      const middleY = (screen.offsetHeight / 2)-150;
-  
-      // Function to create a "LOVE" word at the specific x, y coordinates
+      let delayTime = 0; // Initial delay is 0 for the first word
+
+      // Function to create the "LOVE" word at specific coordinates
       function createLoveWord(x, y, offsetX, offsetY) {
         const loveElement = document.createElement('div');
         loveElement.className = 'love';
-        loveElement.style.left = `${x+offsetX}px`;
-        loveElement.style.top = `${y+offsetY}px`;
+        
+        // Set the target position in custom properties
+        loveElement.style.setProperty('--targetY', `${y + offsetY}px`);
+
+        // Set initial position (starting above the screen)
+        loveElement.style.left = `${x + offsetX}px`;
+        loveElement.style.top = '-100px'; // Initial position above the screen
+
         loveElement.innerHTML = word;
+        
+        // Apply delay to the animation for this word
+        loveElement.style.animationDelay = `${delayTime}s`; // Delay before the animation starts
         document.body.appendChild(loveElement);
+
+        // Increase delay for the next word
+        delayTime += 0.5; // Add a 0.5 second delay between each word
       }
-    
+
       // Create the "LOVE" words at the specific coordinates for G, O, D
       Object.keys(coordinates).forEach(letter => {
         coordinates[letter].forEach(coord => {
@@ -113,8 +134,8 @@
         });
       });
     }
-  
-  window.onresize = function() {
+
+    window.onresize = function() {
       const loveElements = document.querySelectorAll('.love');
       loveElements.forEach(element => {
         element.remove();
