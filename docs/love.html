@@ -5,12 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>God is love</title>
   <style>
+    html {
+      overflow: hidden;
+    }
     body {
       font-family: Arial, sans-serif;
       background-color: #f0f0f0;
       text-align: center;
-      margin-top: 50px;
       position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
     }
     .love {
       position: absolute;
@@ -19,81 +27,101 @@
       color: #2c3e50;
       white-space: nowrap;
     }
+    #container {
+      flex: 1;
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+    }
   </style>
 </head>
-<body>
-
+<body onload="activate()">
+  <div id="container"></div>
   <script>
-    // Store the coordinates for each letter (G, O, D) as arrays of {x, y}
-    const coordinates = {
-      G: [
-        { x: 50, y: 100 },
-        { x: 20, y: 100 },
-        { x: 0, y: 115 },
-        { x: 0, y: 130 },
-        { x: 0, y: 145 },
-        { x: 0, y: 160 },
-        { x: 0, y: 175 },
-        { x: 20, y: 190 },
-        { x: 50, y: 190 },
-        { x: 50, y: 175 },
-        { x: 50, y: 160 }
-      ],
-      O: [
-        { x: 130, y: 100 },
-        { x: 100, y: 115 },
-        { x: 100, y: 130 },
-        { x: 100, y: 145 },
-        { x: 100, y: 160 },
-        { x: 100, y: 175 },
-        { x: 130, y: 190 },
-        { x: 160, y: 115 },
-        { x: 160, y: 130 },
-        { x: 160, y: 145 },
-        { x: 160, y: 160 },
-        { x: 160, y: 175 }
-      ],
-      D: [
-        { x: 240, y: 100 },
-        { x: 210, y: 100 },
-        { x: 210, y: 115 },
-        { x: 210, y: 130 },
-        { x: 210, y: 145 },
-        { x: 210, y: 160 },
-        { x: 210, y: 175 },
-        { x: 240, y: 190 },
-        { x: 210, y: 190 },
-        { x: 270, y: 115 },
-        { x: 270, y: 130 },
-        { x: 270, y: 145 },
-        { x: 270, y: 160 },
-        { x: 270, y: 175 }
-      ]
-    };
-
-    // The word to fill the coordinates
-    const word = "LOVE";
+    function activate() {
+      // Store the coordinates for each letter (G, O, D) as arrays of {x, y}
+      const coordinates = {
+        G: [
+          { x: 50, y: 100 },
+          { x: 20, y: 100 },
+          { x: 0, y: 115 },
+          { x: 0, y: 130 },
+          { x: 0, y: 145 },
+          { x: 0, y: 160 },
+          { x: 0, y: 175 },
+          { x: 20, y: 190 },
+          { x: 50, y: 190 },
+          { x: 50, y: 175 },
+          { x: 50, y: 160 }
+        ],
+        O: [
+          { x: 130, y: 100 },
+          { x: 100, y: 115 },
+          { x: 100, y: 130 },
+          { x: 100, y: 145 },
+          { x: 100, y: 160 },
+          { x: 100, y: 175 },
+          { x: 130, y: 190 },
+          { x: 160, y: 115 },
+          { x: 160, y: 130 },
+          { x: 160, y: 145 },
+          { x: 160, y: 160 },
+          { x: 160, y: 175 }
+        ],
+        D: [
+          { x: 240, y: 100 },
+          { x: 210, y: 100 },
+          { x: 210, y: 115 },
+          { x: 210, y: 130 },
+          { x: 210, y: 145 },
+          { x: 210, y: 160 },
+          { x: 210, y: 175 },
+          { x: 240, y: 190 },
+          { x: 210, y: 190 },
+          { x: 270, y: 115 },
+          { x: 270, y: 130 },
+          { x: 270, y: 145 },
+          { x: 270, y: 160 },
+          { x: 270, y: 175 }
+        ]
+      };
   
-    var middleX = (window.screen.width / 2)-150;
-    var middleY = (window.screen.height / 2)-300;
-
-    // Function to create a "LOVE" word at the specific x, y coordinates
-    function createLoveWord(x, y, offsetX, offsetY) {
-      const loveElement = document.createElement('div');
-      loveElement.className = 'love';
-      loveElement.style.left = `${x+offsetX}px`;
-      loveElement.style.top = `${y+offsetY}px`;
-      loveElement.innerHTML = word;
-      document.body.appendChild(loveElement);
+      // The word to fill the coordinates
+      const word = "LOVE";
+    
+      screen = document.getElementById('container');
+      
+      console.log(screen.offsetHeight);
+    
+      const middleX = (screen.offsetWidth / 2)-150;
+      const middleY = (screen.offsetHeight / 2)-150;
+  
+      // Function to create a "LOVE" word at the specific x, y coordinates
+      function createLoveWord(x, y, offsetX, offsetY) {
+        const loveElement = document.createElement('div');
+        loveElement.className = 'love';
+        loveElement.style.left = `${x+offsetX}px`;
+        loveElement.style.top = `${y+offsetY}px`;
+        loveElement.innerHTML = word;
+        document.body.appendChild(loveElement);
+      }
+    
+      // Create the "LOVE" words at the specific coordinates for G, O, D
+      Object.keys(coordinates).forEach(letter => {
+        coordinates[letter].forEach(coord => {
+          createLoveWord(coord.x, coord.y, middleX, middleY);
+        });
+      });
     }
   
-    // Create the "LOVE" words at the specific coordinates for G, O, D
-    Object.keys(coordinates).forEach(letter => {
-      coordinates[letter].forEach(coord => {
-        createLoveWord(coord.x, coord.y, middleX, middleY);
+  window.onresize = function() {
+      const loveElements = document.querySelectorAll('.love');
+      loveElements.forEach(element => {
+        element.remove();
       });
-    });
-  </script>
 
+      activate();
+    };
+  </script>
 </body>
 </html>
